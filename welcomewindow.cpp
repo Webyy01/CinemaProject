@@ -8,9 +8,9 @@ WelcomeWindow::WelcomeWindow(QWidget *parent, QString username, int age)
     , ui(new Ui::WelcomeWindow)
 {
     ui->setupUi(this);
-    ui->helloLabel->setText("Hello" + username + QString::number(age));
+    ui->helloLabel->setText("Hello: " + username + " " + QString::number(age));
 
-    QPixmap pix ("C:\\Users\\mars\\OneDrive\\Documents\\CinemaProject\\WelcometotheCinemaLabProject11.jpg");
+    QPixmap pix ("C://Users//omars//OneDrive//Documents//CinemaProject//WelcometotheCinemaLabProject11.jpg");
     int w = ui->imageLabel->width();
     int h = ui->imageLabel->height();
     ui->imageLabel->setPixmap(pix.scaled(w,h,Qt::KeepAspectRatio));

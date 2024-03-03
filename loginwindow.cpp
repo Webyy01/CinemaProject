@@ -20,19 +20,25 @@ LoginWindow::~LoginWindow()
 
 void LoginWindow::on_loginButton_clicked()
 {
-    bool nameFound, passwordFound;
+    bool nameFound =false, passwordFound=false;
+    QString username = ui->labelUsername->text();
+    QString password = ui->labelPassword->text();
     for(int i = 0; i < usersCount; i++){
-        if(ui->labelUsername->text() == usernames[i])
+        if(username.compare(usernames[i]))
             nameFound = true;
-        if(ui->labelPassword->text() == passwords[i])
+        if(password.compare(passwords[i]))
             passwordFound = true;
         if(nameFound && passwordFound)
             break;
     }
     if(nameFound && passwordFound){
         hide();
-        WelcomeWindow* welcomeWindow = new WelcomeWindow(this);
+        WelcomeWindow* welcomeWindow = new WelcomeWindow(this, username, 20);
         welcomeWindow->show();
+    }
+    else{
+        ui->errorLabel->setVisible(true);
+        return;
     }
 }
 
