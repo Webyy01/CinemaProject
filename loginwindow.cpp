@@ -1,0 +1,47 @@
+#include "loginwindow.h"
+#include "ui_loginwindow.h"
+#include "welcomewindow.h"
+#include "Users.h"
+#include "registerwindow.h"
+
+LoginWindow::LoginWindow(QWidget *parent)
+    : QMainWindow(parent)
+    , ui(new Ui::LoginWindow)
+{
+    ui->setupUi(this);
+    ui ->errorLabel->setVisible(false);
+
+}
+
+LoginWindow::~LoginWindow()
+{
+    delete ui;
+}
+
+void LoginWindow::on_loginButton_clicked()
+{
+    bool nameFound, passwordFound;
+    for(int i = 0; i < usersCount; i++){
+        if(ui->labelUsername->text() == usernames[i])
+            nameFound = true;
+        if(ui->labelPassword->text() == passwords[i])
+            passwordFound = true;
+        if(nameFound && passwordFound)
+            break;
+    }
+    if(nameFound && passwordFound){
+        hide();
+        WelcomeWindow* welcomeWindow = new WelcomeWindow(this);
+        welcomeWindow->show();
+    }
+}
+
+
+void LoginWindow::on_registerButton_clicked()
+{
+
+    hide();
+    RegisterWindow* registerWindow = new RegisterWindow(this);
+    registerWindow->show();
+}
+
